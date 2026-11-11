@@ -1,0 +1,38 @@
+---
+name: "SpeicherPilot Auswertung"
+version: "1.0.0"
+slug: speicherpilot_auswertung
+# Fertiges, in GitHub Actions gebautes und geprüftes Image (HA baut nicht selbst).
+image: ghcr.io/benl1981/{arch}-speicherpilot_auswertung
+description: "Ex-post, Referenz, Nachtbewertung, Zielerreichung, Quittierung (nur lesend)"
+url: https://github.com/BenL1981/speicherpilot-ha-apps
+arch:
+  - aarch64
+  - amd64
+init: false
+startup: application
+# Erst nach der Umstellung auf "auto" setzen (sonst laufen alte und neue Instanz doppelt).
+boot: manual
+homeassistant_api: true
+# Supervisor-Watchdog: Container neu starten, wenn AppDaemon nicht mehr antwortet
+# oder der Herzschlag-Wächter den Container gestoppt hat.
+watchdog: "tcp://[HOST]:[PORT:5050]"
+map:
+  - addon_config:rw
+options:
+  system_packages: []
+  python_packages: []
+  init_commands: []
+  herzschlag: ["sensor.speicherpilot_referenz_status|30", "sensor.speicherpilot_zielerreichung_status|60"]
+  herzschlag_anlauf_min: 15
+schema:
+  log_level: list(trace|debug|info|notice|warning|error|fatal)?
+  system_packages:
+    - str
+  python_packages:
+    - str
+  init_commands:
+    - str
+  herzschlag:
+    - str
+  herzschlag_anlauf_min: int(5,120)
