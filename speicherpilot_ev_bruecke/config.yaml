@@ -1,6 +1,7 @@
 ---
 name: "SpeicherPilot EV-Brücke"
-version: "1.1.0"
+version: "1.2.0"
+breaking_versions: ["1.2.0"]
 slug: speicherpilot_ev_bruecke
 # Fertiges, in GitHub Actions gebautes und geprüftes Image (HA baut nicht selbst).
 image: ghcr.io/benl1981/{arch}-speicherpilot_ev_bruecke
@@ -35,6 +36,7 @@ options:
   eskalation_fenster_min: 60
   ha_ausfall_melden: true
 schema:
+  app_configuration: str?
   log_level: list(trace|debug|info|notice|warning|error|fatal)?
   system_packages:
     - str
@@ -51,3 +53,4 @@ schema:
   neustart_max: int(1,5)?
   eskalation_fenster_min: int(15,240)?
   ha_ausfall_melden: bool?
+

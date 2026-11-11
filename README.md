@@ -6,8 +6,8 @@ In Home Assistant: **Einstellungen → Apps → App-Store → ⋮ → Repository
 
 | App | Slug | Version |
 |---|---|---|
-| SpeicherPilot inkl. EV-Solver | `speicherpilot_solver` | 1.1.0 |
-| SpeicherPilot EV-Brücke | `speicherpilot_ev_bruecke` | 1.1.0 |
-| SpeicherPilot Auswertung | `speicherpilot_auswertung` | 1.1.0 |
+| SpeicherPilot inkl. EV-Solver | `speicherpilot_solver` | 1.2.0 |
+| SpeicherPilot EV-Brücke | `speicherpilot_ev_bruecke` | 1.2.0 |
+| SpeicherPilot Auswertung | `speicherpilot_auswertung` | 1.2.0 |
 
 Fertige Images (aarch64, amd64): `ghcr.io/benl1981/<arch>-<slug>`.
