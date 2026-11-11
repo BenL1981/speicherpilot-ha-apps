@@ -23,7 +23,7 @@ options:
   system_packages: []
   python_packages: []
   init_commands: []
-  herzschlag: ["sensor.speicherpilot_referenz_status|30", "sensor.speicherpilot_zielerreichung_status|60"]
+  herzschlag: ["sensor.speicherpilot_referenz_status|30"]   # Zielerreichung schreibt nur stundenweise, teils stundenlang nicht - kein Herzschlag
   herzschlag_anlauf_min: 15
 schema:
   log_level: list(trace|debug|info|notice|warning|error|fatal)?
