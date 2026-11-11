@@ -1,6 +1,6 @@
 ---
 name: "SpeicherPilot EV-Brücke"
-version: "1.0.0"
+version: "1.1.0"
 slug: speicherpilot_ev_bruecke
 # Fertiges, in GitHub Actions gebautes und geprüftes Image (HA baut nicht selbst).
 image: ghcr.io/benl1981/{arch}-speicherpilot_ev_bruecke
@@ -25,6 +25,15 @@ options:
   init_commands: []
   herzschlag: ["sensor.speicherpilot_2_ev_bruecke|5"]
   herzschlag_anlauf_min: 5
+  # 1.1.0: Zustand aller Apps im Container (speicherpilot_waechter) - abgestürzte App oder hängender Thread
+  zustand: sensor.speicherpilot_ev_bruecke_zustand
+  anzeige_name: "SpeicherPilot EV-Brücke"
+  # 1.1.0: nach neustart_max automatischen Neustarts in eskalation_fenster_min kein weiterer Neustart,
+  # sondern Push an benachrichtigung (z. B. notify.mobile_app_<gerät>; leer = nur Protokoll)
+  benachrichtigung: ""
+  neustart_max: 2
+  eskalation_fenster_min: 60
+  ha_ausfall_melden: true
 schema:
   log_level: list(trace|debug|info|notice|warning|error|fatal)?
   system_packages:
@@ -36,3 +45,9 @@ schema:
   herzschlag:
     - str
   herzschlag_anlauf_min: int(5,120)
+  zustand: str?
+  anzeige_name: str?
+  benachrichtigung: str?
+  neustart_max: int(1,5)?
+  eskalation_fenster_min: int(15,240)?
+  ha_ausfall_melden: bool?
