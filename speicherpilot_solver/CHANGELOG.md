@@ -1,3 +1,8 @@
+## 1.3.1
+
+- Bewegliche Zeitangaben geplanter Haushaltsgeräte und frische Hauslasten lösen keine unnötige EV-Neuplanung mehr aus.
+- Diese Lasten werden bei jeder Hausaktualisierung vollständig im aktuellen physikalischen Modell berücksichtigt; bei Unzulässigkeit folgt die gemeinsame Neuplanung.
+
 ## 1.3.0
 
 - Zwei Planungstakte: EV-Fahrplan regulär alle 15 Minuten; Haus und Speicher dazwischen mit frischer Prüfung des EV-Fahrplans.
