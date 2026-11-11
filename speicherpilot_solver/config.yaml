@@ -1,6 +1,6 @@
 ---
 name: "SpeicherPilot inkl. EV-Solver"
-version: "1.2.0"
+version: "1.2.3"
 breaking_versions: ["1.2.0"]
 slug: speicherpilot_solver
 # Fertiges, in GitHub Actions gebautes und geprüftes Image (HA baut nicht selbst).
