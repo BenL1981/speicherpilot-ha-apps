@@ -1,3 +1,11 @@
+## 1.3.8
+
+- Frische HA-Zustände gezielt über die dokumentierte Template-API abrufen; kein vollständiger Export aller Entitäten im normalen Sicherheitstakt.
+- Zeitstempel, Benutzerkontext und Attribute bleiben vollständig erhalten. Bei fehlenden Template-Rechten bleibt der bisherige frische REST-Abruf verfügbar.
+- Kommunikationsfehler werden kontrolliert gemeldet; direkter EVCC-Sicherheitsstopp, erneute Befehlszustellung und Fortschrittsüberwachung bleiben aktiv. Keine Verwendung alter Zustände nach einem Timeout.
+- HA-Abfragedauer und letzter Kommunikationsfehler sind im Brückensensor sichtbar. Echte Programmfehler bleiben als Rückruffehler erkennbar.
+- Unveränderte Wartezeiten: HA maximal 2,5 Sekunden, gemeinsames Arbeitsbudget 7 Sekunden, separater Sicherheitsstopp maximal 1,5 Sekunden.
+
 ## 1.3.5
 
 - HA-Zustandsabruf wartet bis zu 2,5 statt 1,5 Sekunden, um kurze Antwortverzögerungen zu überbrücken.

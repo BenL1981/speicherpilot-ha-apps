@@ -1,6 +1,6 @@
 ---
 name: "SpeicherPilot EV-Brücke"
-version: "1.3.5"
+version: "1.3.8"
 breaking_versions: ["1.2.0"]
 slug: speicherpilot_ev_bruecke
 # Fertiges, in GitHub Actions gebautes und geprüftes Image (HA baut nicht selbst).
