@@ -1,3 +1,10 @@
+## 1.3.6
+
+- Wirtschaftliche Gegenprobe als stündliche Momentaufnahme statt erneuter Optimierung bei jeder Eingangsänderung.
+- Eigener Sensor `sensor.speicherpilot_2_stundenbegruendung` mit Zeitfenster, Berechnungszeitpunkt, ursprünglichem Plan und den letzten 24 erfassten Stunden.
+- Stundenbegründung bleibt über App-Neustarts erhalten; geänderte Eingänge werden nicht mit alter wirtschaftlicher Evidenz als frisch bestätigt.
+- Haus-/EV-Planung, Pufferberechnung, Reservebedingungen und aktuelle Umsetzungsprüfung bleiben unverändert.
+
 ## 1.3.4
 
 - Lesbare UTF-8-Protokolle: AppDaemon-ASCII-Umwandlung deaktiviert; persönliche App-Einstellungen bleiben erhalten.
