@@ -1,3 +1,10 @@
+## 1.3.9
+
+- Unveränderte Befehlsauffrischungen werden weiter gesendet und auf DEBUG protokolliert. Neue Befehle und EVCC-Sollabweichungen bleiben auf INFO sichtbar.
+- Schwankende HA-Abfragedauern allein lösen keine zusätzliche Statusveröffentlichung aus; der Diagnose-Herzschlag und sofortige fachliche Zustandsänderungen bleiben erhalten.
+- PV-Bereitschaft nach dem Anstecken erklärt einen noch älteren, vom getrennten Fahrzeug stammenden Plantext eindeutig.
+- Unveränderte Sicherheitsprüfungen, Netzwerkzeitbudgets, Befehlsreihenfolge, Wiederholungen und Ladeentscheidungen.
+
 ## 1.3.8
 
 - Frische HA-Zustände gezielt über die dokumentierte Template-API abrufen; kein vollständiger Export aller Entitäten im normalen Sicherheitstakt.
