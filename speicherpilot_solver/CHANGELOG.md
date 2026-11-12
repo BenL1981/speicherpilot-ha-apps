@@ -1,3 +1,11 @@
+## 1.3.2
+
+- Kürzere Puffer- und Hauptplanung: fertige Solver-Lösung nur einmal vollständig auslesen.
+- EV-Rechenschritte entfallen ausschließlich bei exakt nachgewiesener fehlender Lademöglichkeit im gesamten Horizont und ohne Reserve-Ausnahme.
+- Haus- und Speichergrenzen sowie alle Lastspitzen-Gegenproben bleiben frisch; bei möglichen Ladungen bleibt der vollständige EV-Rechenweg aktiv.
+- Getrennte Zähler zeigen die genutzte Abkürzung in Hauptplanung und Nachrechnungen.
+- 72 lokale Vergleichsläufe mit exakt gleichen vollständigen Plänen und Puffergrenzen; zusätzliche Sicherheits- und Auswertungsprüfungen.
+
 ## 1.3.1
 
 - Bewegliche Zeitangaben geplanter Haushaltsgeräte und frische Hauslasten lösen keine unnötige EV-Neuplanung mehr aus.
