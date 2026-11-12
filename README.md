@@ -6,7 +6,7 @@ In Home Assistant: **Einstellungen → Apps → App-Store → ⋮ → Repository
 
 | App | Slug | Version |
 |---|---|---|
-| SpeicherPilot inkl. EV-Solver | `speicherpilot_solver` | 1.3.2 |
+| SpeicherPilot inkl. EV-Solver | `speicherpilot_solver` | 1.3.3 |
 | SpeicherPilot EV-Brücke | `speicherpilot_ev_bruecke` | 1.2.3 |
 | SpeicherPilot Auswertung | `speicherpilot_auswertung` | 1.2.3 |
 

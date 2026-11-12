@@ -1,3 +1,11 @@
+## 1.3.3
+
+- Wirtschaftliche Gegenprobe nutzt identische, bereits berechnete Nullreserve-Zielwerte innerhalb desselben Durchlaufs erneut.
+- Alle physikalischen Eingaben einschließlich EV-Fahrplan und erzwungener Entladung müssen exakt passen; sonst wird normal gerechnet.
+- Eigene Protokollangabe: Gegenprobe in Millisekunden, frisch oder aus dem Diagnose-Cache.
+- Bisherige Diagnosehäufigkeit und sämtliche Steuerungs-/Pufferprüfungen bleiben bestehen.
+- 36 lokale Vergleiche mit identischen Erklärungen, Plänen und Puffern; etwa 20–25 Prozent kürzere Gegenprobe in den berechneten Testfällen.
+
 ## 1.3.2
 
 - Kürzere Puffer- und Hauptplanung: fertige Solver-Lösung nur einmal vollständig auslesen.
