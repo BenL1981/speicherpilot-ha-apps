@@ -1,8 +1,7 @@
-## 1.2.3
+## 1.3.4
 
-- Vollständiges HA-Update einschließlich Python-Code und Code-Prüfsummen.
-- Persönliche Konfiguration und Laufzeitdaten bleiben getrennt erhalten.
-- Sicheres Speichern, Fortschrittsüberwachung und wiederholbare Alarmzustellung.
-- Notstopp-Bestätigung und begrenzte Kommunikationswartezeiten der EV-Brücke.
-- Persistenter Datenpfad unabhängig von S6-Umgebungsvariablen.
-- Direkte Stop-Anforderung an EVCC beim Entladen der aktiven Brücke.
+- Lesbare UTF-8-Protokolle: AppDaemon-ASCII-Umwandlung deaktiviert; persönliche App-Einstellungen bleiben erhalten.
+- Auswertungsimage enthält highspy 1.15.1 für Ex-post und prüft die Abhängigkeit beim Start.
+- Containerprüfungen rechnen jetzt auch im Auswertungsimage eine echte kleine Optimierung und prüfen Sonderzeichen gegen AppDaemons Logger.
+- Dauerhaft fehlgeschlagene Auswertungsjobs werden als fachliche Warnung sichtbar; Liveness- und Hängerüberwachung bleiben aktiv, ohne Neustartschleife bei fachlichen Warnungen.
+
