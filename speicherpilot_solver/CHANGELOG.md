@@ -1,3 +1,10 @@
+## 1.3.7
+
+- Identische Modellmatrizen werden innerhalb einer rekursiven Solverberechnung frisch kopiert, statt sie für jede Reserve-Nachrechnung erneut aufzubauen.
+- Puffer, Hauptplanung und stündliche Gegenprobe rechnen weiterhin alle Optimierungen mit aktuellen Eingaben; keine Freigaben oder Lösungen werden zwischengespeichert.
+- Alle physikalischen Eingaben bleiben Teil des Vergleichsschlüssels. Reservekosten und Netzladekappen werden auf die neue Modellkopie angewendet; abgelehnte Kopien führen zum vollständigen Aufbau.
+- Getrennte Messwerte für vollständigen Modellaufbau und Modellkopien. Stundenbegründung aus 1.3.6 bleibt aktiv.
+
 ## 1.3.6
 
 - Wirtschaftliche Gegenprobe als stündliche Momentaufnahme statt erneuter Optimierung bei jeder Eingangsänderung.
