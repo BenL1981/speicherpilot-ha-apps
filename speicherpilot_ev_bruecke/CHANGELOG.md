@@ -1,3 +1,11 @@
+## 1.3.11
+
+- Der Notstopp schaltet die NRGkick-Ladefreigabe auch dann aus, wenn die Notstopp-Sperre nicht gespeichert werden kann (voller oder schreibgeschützter Datenträger). Ausgeschaltet wird vor dem Speichern, sodass auch ein hängender Datenträger den Stopp nicht verzögert. Die Sperre bleibt im Arbeitsspeicher aktiv, der Speicherfehler wird einmal gemeldet und die Speicherung in jedem Takt wiederholt. Grenze: Eine nicht gespeicherte Sperre geht bei einem Neustart der Brücke verloren, auch bei dem Neustart, den der Container-Wächter wegen des Speicherfehlers auslöst.
+- Eine langsame oder fehlgeschlagene Diagnoseveröffentlichung allein stoppt das Laden nicht mehr. Sie wird als Warnung protokolliert, im Status angezeigt (`diagnosefehler_zuletzt`) und im nächsten Takt wiederholt. Fehler beim Lesen von HA oder beim Senden von Ladebefehlen lösen weiterhin den direkten EVCC-Sicherheitsstopp aus.
+- Nach einem direkten Sicherheitsstopp bleiben die Ladepunkte für die übliche Stopp-Haltezeit (120 s) aus, statt im nächsten Takt sofort wieder freigegeben zu werden (`sicherheitsstopp_bis`).
+- Ein nicht lesbarer Plan eines Fahrzeugs schaltet nur dieses Fahrzeug aus (Grund „Plan ungültig: …“, `plan_ungueltig`); das andere Fahrzeug folgt weiter seinem Plan.
+- Bestehende Attribute, Einheiten und Statuswerte bleiben unverändert; es kommen nur Attribute hinzu.
+
 ## 1.3.9
 
 - Unveränderte Befehlsauffrischungen werden weiter gesendet und auf DEBUG protokolliert. Neue Befehle und EVCC-Sollabweichungen bleiben auf INFO sichtbar.

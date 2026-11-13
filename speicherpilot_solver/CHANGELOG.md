@@ -1,3 +1,12 @@
+## 1.3.12
+
+- Zeitbudget je Solverlauf (`solver_run_budget_s`, Vorgabe 150 s): Jede Optimierung erhält höchstens die Restzeit. Ist das Budget verbraucht, werden Gegenprobe und Pufferprüfung übersprungen (`uebersprungen`, kein Fehler); der Plan für Haus und Speicher erhält weiterhin eigene Rechenzeit (`solver_fallback_budget_s`, Vorgabe 45 s).
+- Eine zulässige Lösung am HiGHS-Zeitlimit wird übernommen, wenn die relative Lücke höchstens 0,1 % beträgt (`mip_accept_gap`). Neues Attribut `suboptimal` am Solverstatus; größere Lücken führen wie bisher in die Rückfallkette. Die Gegenprobe meldet für einen solchen Plan innerhalb seiner Lücke keinen Modellfehler (Ursache 5).
+- Speicher-SoC außerhalb 0–100 % und alte Zendure-Werte eines nicht erreichbaren Geräts sind ungültig: Der Plan wird zurückgezogen. Ein stundenlang gleicher SoC bleibt gültig, solange das Gerät online ist. Neues Attribut `soc_pruefung` an der Datenqualität. Die wahlweise SENEC-Altersprüfung liest `last_reported` über HA-REST.
+- SoC- und Solcast-Änderungen lösen höchstens alle 120 s eine Neuplanung aus, außer bei SoC-Sprüngen ab 2 Prozentpunkten oder Ausfall eines Werts. Preis, Stecker, Entscheidungen, Schalter und die regelmäßigen Läufe (alle 300 s, Stundenwechsel) bleiben unverändert.
+- Die Pufferprüfung rechnet mit dem EV-Fahrplan des Plans nur noch die Hausstufe; passt der Fahrplan nicht zur erhöhten Last, rechnet sie wie bisher das vollständige EV-Modell.
+- Python-App 3.6.0. Keine veröffentlichten Attribute, Einheiten oder Statuswerte entfernt oder umbenannt.
+
 ## 1.3.7
 
 - Identische Modellmatrizen werden innerhalb einer rekursiven Solverberechnung frisch kopiert, statt sie für jede Reserve-Nachrechnung erneut aufzubauen.
