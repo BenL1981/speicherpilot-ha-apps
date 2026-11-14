@@ -1,3 +1,9 @@
+## 1.4
+
+- Versionszählung: Jede App zählt ab jetzt ihre eigenen Schritte. Auf Auswertung 1.3.21 folgt Auswertung 1.4.
+- Das Image enthält den Solver-Kern von Solver 1.4 (`speicherpilot2b_core.py`), den die Ex-post-Gegenrechnung für ihre Nachrechnung aufruft. Geändert ist dort die Rechnung mit Fahrzeugen im Modell; im Zweig ohne Fahrzeuge, den die Ex-post-Nachrechnung durchläuft, wird nur die Versionsabfrage von highspy je Prozess einmal statt je Ergebnis gelesen, und die Untergrenze der Gegenprobe (`force_discharge_kw`, von Ex-post nicht benutzt) wird nach dem Modellaufbau gesetzt. Gespeicherte und neue Ex-post-Ergebnisse bleiben vergleichbar (zehn Rechnungen bytegleich mit dem Kern aus 1.3.21), `EXPOST_VERSION` bleibt 1.0.0, es wird nichts neu bewertet.
+- Ex-post, Nachtbewertung, Referenz, Zielerreichung und Quittierung sind unverändert. Keine neue Einstellung, keine geänderten Sensoren oder Attribute. Einzelheiten in RELEASE_AUSWERTUNG_1.4.md.
+
 ## 1.3.21
 
 - Nachtbewertung 1.3.4: Die Größe der Attribute von `sensor.speicherpilot_nachtbewertung` wird jetzt so gezählt, wie der Recorder von Home Assistant sie zählt (JSON ohne Leerzeichen, UTF-8). Bisher zählte die App rund 10 % mehr und kürzte Nächte, die noch weit unter der Recorder-Grenze von 16 384 Byte lagen. Die eigene Kürzungsgrenze bleibt 15 000 Byte. Testnacht mit vollständigem Ex-post-Verweis: 13 440 Byte, 1 560 Byte Abstand (vorher 47 Byte in der alten Zählung).
