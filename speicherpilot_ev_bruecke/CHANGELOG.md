@@ -1,3 +1,10 @@
+## 1.3.16
+
+- Gemeinsames Speichermodul 1.1 (in allen drei Images): Die Dateisperre der Zustandsdateien wartet beim Speichern höchstens 2 s und bei der Anmeldung beim App-Start höchstens 15 s statt unbegrenzt. Bleibt sie beim Speichern belegt, meldet die Brücke das wie jeden anderen Speicherfehler der Notstopp-Sperre (`notstopp_speicherfehler`, Wächter `stoerung`), die Sperre im Arbeitsspeicher gilt weiter und die Speicherung wird in jedem Takt wiederholt. Eine belegte Sperre hält den Takt damit nicht mehr an.
+- Nach dem Speichern wird auch der Ordner auf den Datenträger geschrieben, damit die neue Datei einen Stromausfall übersteht.
+- Grenze: Ein hängender Datenträger kann das Öffnen, Schreiben und `fsync` selbst weiter aufhalten; dafür gibt es keine Zeitgrenze.
+- Der Python-Code der Brücke (1.2.12), Sensoren, Attribute, Einheiten, Statuswerte und Einstellungen sind unverändert.
+
 ## 1.3.11
 
 - Der Notstopp schaltet die NRGkick-Ladefreigabe auch dann aus, wenn die Notstopp-Sperre nicht gespeichert werden kann (voller oder schreibgeschützter Datenträger). Ausgeschaltet wird vor dem Speichern, sodass auch ein hängender Datenträger den Stopp nicht verzögert. Die Sperre bleibt im Arbeitsspeicher aktiv, der Speicherfehler wird einmal gemeldet und die Speicherung in jedem Takt wiederholt. Grenze: Eine nicht gespeicherte Sperre geht bei einem Neustart der Brücke verloren, auch bei dem Neustart, den der Container-Wächter wegen des Speicherfehlers auslöst.

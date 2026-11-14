@@ -1,3 +1,14 @@
+## 1.3.14
+
+- Nachtbewertung 1.3.2: Eine vollständig aufgezeichnete Stunden-Momentaufnahme mit Ursache 2 (SoC-Reserve) ordnet spätere gültige Halten-Pläne derselben Stunde ohne eigene Diagnose ein, unter denselben Bedingungen wie bisher bei Ursache 1. Vorher blieb dieser Netzbezug „nicht zuordenbar“ (Nacht zum 14.11.2026: 2,35 von 7,33 kWh, Status `pruefbedarf`).
+- Diese kWh bleiben in `stundenweise_eingeordnet` und zählen weder zu `reserve` noch zu `wirtschaftlich`. Neu ist die Aufteilung nach Ursache der Momentaufnahme: `stundenweise_eingeordnet_reserve_kwh`, `stundenweise_eingeordnet_wirtschaftlich_kwh`, `nach_ursache_kwh`, je Stunde `stundenbegruendung.ursache_nr` (Detailbericht zusätzlich `stundenweise_nach_ursache_kwh`), im Verlauf `sr` (nur wenn größer 0).
+- Der Status einer solchen Nacht ist `stundenweise_eingeordnet`, nie `wirtschaftlich_plausibel`; die Kurzbegründung nennt den Reserve-Anteil.
+- Andere Ursachen, übersprungene oder fehlgeschlagene Gegenproben, vom Solver auf Eingangsdaten umbenannte Diagnosen, ausgeschaltete Steuerung und Planlücken bleiben unerklärt bzw. in ihrer bisherigen Kategorie.
+- Strenger für Ursache 1 und 2: Spätere Läufe mit `datenqualitaet: degraded` ohne eigene Diagnose werden nicht durch die Momentaufnahme eingeordnet; der Ursprungslauf braucht eine eigene Entscheidungszeile (keine geerbte Diagnose); eine neuere, nicht zugelassene Momentaufnahme derselben Stunde beendet die Wirkung der älteren.
+- Wird der Sensor wegen seiner Größe gekürzt, behält jede Stunde ihre `stundenbegruendung` (Quelle, Zeitpunkt, Ursache der Momentaufnahme).
+- Nach dem Update wird die letzte Nacht wegen der neuen Nachtbewertungsversion einmal neu bewertet.
+- Das Image enthält das gemeinsame Speichermodul 1.1 (Solver 1.3.15, EV-Brücke 1.3.16): Dateisperre mit Zeitgrenze (2 s beim Speichern, 15 s bei der Anmeldung beim App-Start) statt unbegrenztem Warten, Ordner-`fsync` nach dem Speichern. Eine belegte Sperre erscheint als „Zustand nicht gespeichert“ (Wächter `stoerung`) und wird beim nächsten Speichern wiederholt.
+
 ## 1.3.13
 
 - Referenz 1.3.1: Ein Fehler beim Veröffentlichen oder Weiterplanen lässt die Rückrechnung nicht mehr dauerhaft als „läuft“ markiert; der nächste Zyklus setzt fort. Auch der Ersatzweg `set_state` kann den Ablauf nicht mehr abbrechen.
