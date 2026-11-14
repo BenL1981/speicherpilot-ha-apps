@@ -1,3 +1,11 @@
+## 1.3.21
+
+- Nachtbewertung 1.3.4: Die Größe der Attribute von `sensor.speicherpilot_nachtbewertung` wird jetzt so gezählt, wie der Recorder von Home Assistant sie zählt (JSON ohne Leerzeichen, UTF-8). Bisher zählte die App rund 10 % mehr und kürzte Nächte, die noch weit unter der Recorder-Grenze von 16 384 Byte lagen. Die eigene Kürzungsgrenze bleibt 15 000 Byte. Testnacht mit vollständigem Ex-post-Verweis: 13 440 Byte, 1 560 Byte Abstand (vorher 47 Byte in der alten Zählung).
+- Neues Attribut `groessenstufe`: `vollstaendig`, `verweis_kurz`, `verweis_entfallen`, `stunden_gekuerzt`, `verlauf_gekuerzt` oder `notfall_gekuerzt`. Ab `stunden_gekuerzt` steht wie bisher zusätzlich `groessenhinweis`.
+- Zwei weitere Stufen für Nächte, die auch mit gekürzten Stunden zu groß sind (bisher wurden sie trotzdem veröffentlicht und der Recorder speicherte dann keine Attribute): zuerst entfallen die ältesten Verlaufseinträge (mindestens die sieben neuesten bleiben). Reicht das nicht, werden in der letzten Stufe schrittweise und jeweils neu gemessen Warnungen, Prüfgründe und Texte begrenzt, dann der Verlauf weiter gekürzt, dann die Stunden und zuletzt die Vorfälle der Nacht geleert; `groessenhinweis` nennt, was gekürzt wurde. Alle Schlüssel, der Status, die kWh-Werte, die Geräteblöcke, beide Bewertungen und die offenen Vorfälle (`offene_vorfaelle`) bleiben in jeder Stufe.
+- Kein Schlüssel und kein Wert wurde entfernt, umbenannt oder umformatiert. Keine neue Einstellung.
+- Nach dem Update wird die letzte Nacht wegen der neuen Nachtbewertungsversion einmal neu bewertet.
+
 ## 1.3.18
 
 - Nachtbewertung 1.3.3: `wirtschaftliche_bewertung.ex_post` verweist jetzt auf die Ex-post-Gegenrechnung desselben Containers. Neues Feld `gegenrechnung` mit Quelle (`sensor.speicherpilot_expost`), Status (`vorlaeufig`/`final`), Abstand zum Optimum, Entscheidungsqualität, Modellunsicherheit und dem Hinweis, dass das Ex-post-Fenster Nacht + Folgetag umfasst. Liegt kein Ergebnis für diese Nacht vor, steht dort `kein_ergebnis`, `andere_nacht`, `fehler`, `nicht_auswertbar` oder `nicht_lesbar`, ohne Zahlen. `fehler` steht dort auch, wenn der Ex-post-Lauf dieser Nacht scheiterte, bevor ein Ergebnis vorlag (Attribut `fehler.nacht` des Ex-post-Sensors).
