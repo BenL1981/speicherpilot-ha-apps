@@ -1,3 +1,10 @@
+## 1.3.19
+
+- Abgezogene Lasten (`load_exclude`) ohne ausreichende Messhistorie, etwa eine neu eingebundene Steckdose: Der Hinweis in der Datenqualität lautet neu „Excluded load not removed from load profile yet (history still building): …“ statt „EV charging not removed from load profile: …“. Echte Fehler (ungültige Werte, fehlgeschlagener Verlaufsabruf) heißen „Excluded load not removed from load profile: …“. Die Datenqualität bleibt in beiden Fällen `ok`.
+- Protokoll: Eine nicht abgezogene Last wird nur noch einmal je Grund gemeldet statt bei jeder Aktualisierung des Lastprofils; fehlende Historie als Information, echte Fehler weiterhin als Warnung. Sobald die Last abgezogen wird, steht das einmal im Protokoll.
+- Neues Feld `history_building: true` am betroffenen Eintrag in `load_profile.excluded_loads`. Der Abzug selbst, die Schwelle (80 % der Hausdaten, keine fehlende Stunde) und der Plan sind unverändert.
+- Image mit per Prüfsumme festgelegtem Basis-Image (siehe RELEASE_1.3.17.md, Teil F). Python-App 3.7.1.
+
 ## 1.3.15
 
 - SENEC-Altersprüfung (`senec_soc_max_age_minutes`, weiterhin aus): liest das echte `last_reported` über die HA-Template-API statt über `/api/states`, dessen Zeitstempel bei unverändertem Wert stehen bleibt (1.3.12 zog damit auf der Anlage den Plan zurück). „stale“ nur noch, wenn der unveränderte Wert nachweislich mehrfach erneut gemeldet wurde (drei Meldungen, Alter über dem Dreifachen ihres größten Abstands) und eine zweite Lesung den alten Zeitstempel bestätigt; jede fehlgeschlagene Lesung ergibt `range_only`. Quelle in `soc_pruefung`: `last_reported_template`, neues Feld `hinweis`.

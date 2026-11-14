@@ -1,3 +1,14 @@
+## 1.3.17
+
+- Ein manueller Stopp (NRGkick-Ladefreigabe von Hand aus) und seine Ruhezeit bis zur nächsten vollen Stunde überstehen einen Neustart der Brücke. Bisher gab die Brücke das Fahrzeug nach einem Neustart (auch nach dem automatischen Neustart durch den Herzschlag) nach 120 s wieder frei. Grenze: Ein Stopp von Hand, während die Brücke nicht läuft oder gerade neu startet, wird weiterhin nicht erkannt.
+- Die Schutzpause nach Netzbezug bei teurem Strom oder SENEC-Entladung (`pv_schutz_bis`) übersteht einen Neustart ebenfalls.
+- Reserve-Freigaben: Energie, Kosten und Ende einer Freigabe werden gespeichert. Eine Freigabe, die beim Neustart bekannt war, wird nie fortgesetzt und nie von null neu gezählt; die Brücke meldet dem Solver die bis dahin gelieferte Energie und das Ende „Brückenneustart – Freigabe nicht fortgesetzt“. Lief die Freigabe beim letzten Speichern, wird der Nachlauf weiter gezählt, einschließlich der Energie, die EVCC während des Ausfalls gezählt hat.
+- Defekte Notstopp-Datei beim Start: Bisher brach der Start der Brücke mit einem Fehler ab und es wurde nichts mehr gesteuert. Jetzt wird die Datei als `.defekt` beiseitegelegt, alle Fahrzeuge werden wie nach einem Notstopp gesperrt (NRGkick-Ladefreigabe aus, Status `fehler`), bis die EV-Automatik aus- und wieder eingeschaltet wird. Eine fehlende Datei (Neuinstallation) sperrt nichts.
+- Defekte Zustandsdatei beim Start: wird als `.defekt` beiseitegelegt; alle Fahrzeuge ruhen bis zur nächsten vollen Stunde wie nach einem manuellen Stopp, und eine bereits genehmigte Reserve-Freigabe wird nicht ausgeführt.
+- Neue Datei `speicherpilot_ev_bruecke_state.json` im Zustandsordner; die Notstopp-Datei behält Namen und Format. Neue Attribute im Brückensensor: `zustand_start`, `zustand_speicherfehler`, `notstopp_datei_defekt`. Eine Sperre aus einer defekten Notstopp-Datei trägt in `notstopp_nrgkick` zusätzlich `datei_defekt: true`. Neue optionale Einstellungen `state_max_age_h` (72) und `state_save_interval_s` (60).
+- Bestehende Sensoren, Attribute, Einheiten und Statuswerte sind unverändert. Python-Brücke 1.2.13.
+- Image-Bau: Die AppDaemon-Basis 0.19.3 (AppDaemon 4.5.13) ist jetzt mit Digest festgelegt; der Inhalt der Basis ändert sich nicht. Port 5050 bleibt unverändert nur im internen Supervisor-Netz erreichbar.
+
 ## 1.3.16
 
 - Gemeinsames Speichermodul 1.1 (in allen drei Images): Die Dateisperre der Zustandsdateien wartet beim Speichern höchstens 2 s und bei der Anmeldung beim App-Start höchstens 15 s statt unbegrenzt. Bleibt sie beim Speichern belegt, meldet die Brücke das wie jeden anderen Speicherfehler der Notstopp-Sperre (`notstopp_speicherfehler`, Wächter `stoerung`), die Sperre im Arbeitsspeicher gilt weiter und die Speicherung wird in jedem Takt wiederholt. Eine belegte Sperre hält den Takt damit nicht mehr an.

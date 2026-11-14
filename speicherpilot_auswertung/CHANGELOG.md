@@ -1,3 +1,13 @@
+## 1.3.18
+
+- Nachtbewertung 1.3.3: `wirtschaftliche_bewertung.ex_post` verweist jetzt auf die Ex-post-Gegenrechnung desselben Containers. Neues Feld `gegenrechnung` mit Quelle (`sensor.speicherpilot_expost`), Status (`vorlaeufig`/`final`), Abstand zum Optimum, Entscheidungsqualität, Modellunsicherheit und dem Hinweis, dass das Ex-post-Fenster Nacht + Folgetag umfasst. Liegt kein Ergebnis für diese Nacht vor, steht dort `kein_ergebnis`, `andere_nacht`, `fehler`, `nicht_auswertbar` oder `nicht_lesbar`, ohne Zahlen. `fehler` steht dort auch, wenn der Ex-post-Lauf dieser Nacht scheiterte, bevor ein Ergebnis vorlag (Attribut `fehler.nacht` des Ex-post-Sensors).
+- Der Statuswert `nicht_belastbar_berechenbar` und alle Schlüssel bleiben. Der Text `grund` behauptet nicht mehr, die Neuberechnung finde „nicht in der App“ statt, und ist nicht länger als der alte. Der Nachtstatus hängt nie vom Ex-post-Ergebnis ab.
+- Der Verweis kostet keine Stundendetails: Passt er nicht unter die Kürzungsgrenze von 15 000 Byte, wird er auf Status und Abstand gekürzt oder weggelassen. Ein Verweis, dessen Veröffentlichung fehlschlug, wird mit der nächsten Ex-post-Aktualisierung nachgeholt.
+- Ex-post 1.2.3: `sensor.speicherpilot_lernstatus` → `solcast_guete.kalibrierung` beschreibt den vorhandenen PV-Kalibrierungskandidaten `pv_bias` (Faktor aus Vortagen, Grenzen, Trefferquoten der skalierten P10/P50, nötige Solver-Option). Kein neuer Kandidat, keine zusätzliche Rechenzeit, keine Parameterübernahme (Stufe A unverändert).
+- Neue Einstellung der Nachtbewertung: `expost_sensor` (Voreinstellung `sensor.speicherpilot_expost`).
+- Nach dem Update wird die letzte Nacht wegen der neuen Nachtbewertungsversion einmal neu bewertet. `kalibrierung` erscheint mit der nächsten finalen Ex-post-Auswertung (22:20 Uhr).
+- Image-Bau: Die AppDaemon-Basis 0.19.3 (AppDaemon 4.5.13) ist jetzt mit Digest festgelegt; der Inhalt der Basis ändert sich nicht. Port 5050 bleibt unverändert nur im internen Supervisor-Netz erreichbar.
+
 ## 1.3.14
 
 - Nachtbewertung 1.3.2: Eine vollständig aufgezeichnete Stunden-Momentaufnahme mit Ursache 2 (SoC-Reserve) ordnet spätere gültige Halten-Pläne derselben Stunde ohne eigene Diagnose ein, unter denselben Bedingungen wie bisher bei Ursache 1. Vorher blieb dieser Netzbezug „nicht zuordenbar“ (Nacht zum 14.11.2026: 2,35 von 7,33 kWh, Status `pruefbedarf`).
