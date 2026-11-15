@@ -1,3 +1,10 @@
+## 1.5
+
+- Referenz 1.3.2: Der Verlauf eines Rechenabschnitts kommt mit einer einzigen Abfrage an Home Assistant statt mit einer je Sensor (16). Im laufenden Betrieb sind das 288 statt 4 608 Verlaufsabfragen am Tag. Gefragt wird genau so wie bisher; die Werte sind dieselben. Scheitert die gebündelte Abfrage, fragt die Referenz wie bisher je Sensor. Neues Attribut `verlauf_abfrage` am Statussensor: `ha_rest_gebuendelt` oder `appdaemon_einzeln (Grund)`.
+- Referenz 1.3.2: Am Ende jedes 5-Minuten-Zyklus wird einmal veröffentlicht statt zweimal; der Status springt nicht mehr kurz auf „backtest 100 %“. Die Sensoren werden nur noch gesendet, wenn sich Zustand oder Attribute geändert haben, sonst spätestens nach 60 s (Einstellung `heartbeat_seconds`). Gemerkt wird nur ein über REST bestätigtes Senden; über den Rückfall `set_state` wird jedes Mal gesendet wie bisher. `berechnet_am` zählt nicht als Änderung, wird aber bei jedem Senden neu gesetzt; der Herzschlag des Containers (`last_updated` von `sensor.speicherpilot_referenz_status`, Grenze 30 min) bleibt so frisch wie bisher.
+- Zielerreichung 1.1.3: Die zehn Sensoren werden nur noch gesendet, wenn sich ihr Inhalt geändert hat, sonst spätestens nach 60 s (`heartbeat_seconds`, geprüft mit 5 s Spielraum für den schwankenden 30-s-Takt). Bisher sendete jeder 30-s-Takt alle zehn unverändert (28 800 Anfragen am Tag). `last_updated` ändert sich dadurch nicht, weil Home Assistant ein unverändertes Schreiben ohnehin nicht als Änderung zählt.
+- Ex-post, Nachtbewertung und Quittierung sind unverändert. Keine geänderten oder entfernten Sensoren, Attribute, Einheiten oder Statuswerte. Einzelheiten in RELEASE_AUSWERTUNG_1.5.md.
+
 ## 1.4
 
 - Versionszählung: Jede App zählt ab jetzt ihre eigenen Schritte. Auf Auswertung 1.3.21 folgt Auswertung 1.4.
