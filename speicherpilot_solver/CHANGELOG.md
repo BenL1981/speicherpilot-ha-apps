@@ -1,3 +1,11 @@
+## 1.5
+
+- Zweitaktplanung bei genehmigter Reserve-Freigabe, die die Mindestreserve nicht ganz erreicht: Die Fahrzeuge wurden an der Anlage weiter in jedem Lauf neu geplant (Nacht 14./15.11.2026: `planungstakte.zaehler` `ev_neu` 64, `haus_aktualisiert` 0, `ausloeser: kritisch`, „id4: Mindestreserve im Plan nicht erreicht“). Ursache: Die Freigabe für den ID.4 war auf 5,98 kWh begrenzt, der Plan nutzte sie vollständig und blieb 0,307 kWh unter der Mindestreserve (ID.4 inzwischen bei 34 % statt 35 %). Jede Restlücke galt als kritisch, auch wenn ein neuer Plan sie nicht schließen kann. Jetzt: Schöpft der gespeicherte Plan die freigegebene Energie aus, wird der Fahrplan wie jeder andere feste Reserve-Fahrplan weitergeführt (`planungstakte.abkuerzung.art: reserve_fahrplan_fest`); die Fahrzeuge werden alle 15 Minuten und bei jeder EV-relevanten Änderung neu geplant, das Haus alle 5 Minuten.
+- Weiterhin in jedem Lauf neu geplant wird ein angestecktes Fahrzeug, dessen Plan die Mindestreserve verfehlt, ohne dass die freigegebene Energie ausgeschöpft ist (keine Freigabe, Freigabestunden zu kurz für die freigegebene Energie, nur die Kostengrenze erreicht, Testladung), sowie Pflichtziel und Ziel innerhalb von 15 Minuten.
+- Grenze: Bleibt nach ausgeschöpfter Freigabe eine Restlücke, wird zusätzliche reguläre Ladung (PV-Überschuss, Stunden unter der Preisgrenze), die allein durch geänderten Hausverbrauch oder Speicherstand möglich wird, erst mit der nächsten Fahrzeugplanung nach höchstens 15 Minuten erkannt statt nach 5 Minuten. Geänderte Preise, PV-Prognose, Fahrzeug-SoC und Freigabe planen weiter sofort neu.
+- Gemessen an der nachgestellten Stunde dieses Falls (zwölf Läufe im Abstand von 5 Minuten, Entwicklungsrechner): Fahrzeugplanungen 12 → 4, Lösungen des Planmodells in der Planung 72 → 48. Jeder der zwölf Pläne ist gleich der vollständigen Rechnung. Nicht an der Anlage gemessen.
+- Python-App 3.9.1. Keine Sensoren, Attribute, Einheiten oder Statuswerte geändert; keine neue Einstellung. EV-Brücke 1.3.23 und Auswertung 1.4 bleiben unverändert (Prüfung in RELEASE_SOLVER_1.5.md).
+
 ## 1.4
 
 - Versionszählung: Jede App zählt ab jetzt ihre eigenen Schritte. Auf Solver 1.3.22 folgt Solver 1.4 (Python-App 3.9.0). Gehört zu Auswertung 1.4 (gleicher Solver-Kern im Image); die EV-Brücke bleibt 1.3.23.
