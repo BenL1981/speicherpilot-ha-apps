@@ -1,6 +1,7 @@
 ## 1.6
 
 - Gemeinsame Zahlenumwandlung: Referenz, Ex-post, Nachtbewertung, Zielerreichung und Quittierung nutzen `as_float` aus `speicherpilot_zahlen.py` statt eigener Kopien. Verhalten unverändert (geprüft gegen jede frühere Kopie). Das gilt auch für den mitgelieferten Solver-Kern (`speicherpilot2b_core.py`), den Ex-post zum Nachrechnen aufruft.
+- Toter Code ohne Aufrufer entfernt: `dataset_from_export`, `rle_decode` und `SERIES_KW` in `speicherpilot_expost_core.py` (Format des früheren Browser-Exports) sowie `taper_cap_kw` im Solver-Kern. Verhalten unverändert.
 - Keine App-Version geändert: Referenz 1.3.2 (`SIM_VERSION` 1.2), Ex-post 1.2.3 (`EXPOST_VERSION` 1.0.0), Nachtbewertung 1.3.4, Zielerreichung 1.1.3, Quittierung 1.1. Es wird daher nichts neu berechnet oder neu bewertet.
 - Keine Sensoren, Attribute, Einheiten oder Statuswerte geändert, keine neue Einstellung. Gehört zu Solver 1.6 und EV-Brücke 1.4. Einzelheiten in RELEASE_AUSWERTUNG_1.6.md.
 

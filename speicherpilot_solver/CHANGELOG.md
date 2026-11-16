@@ -3,6 +3,7 @@
 - Gemeinsame Zahlenumwandlung: `as_float` steht einmal in `speicherpilot_zahlen.py` statt in acht Kopien. Für Solver-Kern und Planung unverändert (Zahl, Text, `None`, NaN und ±Unendlich wie bisher).
 - Reserve-Modul 1.0.6: `as_float` weist jetzt auch ±Unendlich ab wie alle anderen Module (bisher ließ nur die Reserve-Kopie es durch). Wirkung nur bei unendlichen Werten, im Betrieb bisher nicht beobachtet: Eine Fehlmenge „-inf“ im Entscheidungshelfer hebt nach einer Ablehnung die Sperre für neue Anfragen nicht mehr vorzeitig auf; eine gespeicherte Freigabe mit unendlichem Stundenpreis wird nicht wiederhergestellt („slot_preise unlesbar“); ein unendlicher Preis einer Testladung endet mit „Preis der Stunde fehlt“ statt einem Fehler.
 - Aufteilung von `SpeicherPilot2b`, erster Schritt: Geplante Lasten (`speicherpilot2b_lasten.py`) und SENEC-Untergrenze (`speicherpilot2b_senec.py`) liegen in eigenen Modulen, Code zeichengleich, Methoden- und Attributnamen unverändert. `_run_attempt` unverändert.
+- Toter Code ohne Aufrufer entfernt: `taper_cap_kw` (Solver-Kern) und `proposal_still_executable` (Reserve-Modul). Verhalten unverändert.
 - Python-App 3.9.2. Keine Sensoren, Attribute, Einheiten oder Statuswerte geändert, keine neue Einstellung; die Versionsattribute zeigen 3.9.2 bzw. Reserve 1.0.6. Gehört zu EV-Brücke 1.4 und Auswertung 1.6 (gleiche Zahlenumwandlung). Einzelheiten in RELEASE_SOLVER_1.6.md.
 
 ## 1.5
