@@ -1,3 +1,9 @@
+## 1.4
+
+- Versionszählung: Auf EV-Brücke 1.3.23 folgt EV-Brücke 1.4.
+- Gemeinsame Zahlenumwandlung: Die Brücke nutzt `as_float` aus `speicherpilot_zahlen.py` statt einer eigenen Kopie. Verhalten unverändert (gleiche Ergebnisse für Zahl, Text, `None`, NaN und ±Unendlich, geprüft gegen die frühere Kopie).
+- Python-Brücke bleibt 1.2.15. Keine Sensoren, Attribute, Einheiten, Statuswerte oder Zustandsdateien geändert, keine neue Einstellung. Gehört zu Solver 1.6 und Auswertung 1.6. Einzelheiten in RELEASE_EV_BRUECKE_1.4.md.
+
 ## 1.3.23
 
 - Eine genehmigte Reserve-Freigabe übersteht einen Neustart der Brücke (Vorfall 14.11.2026: Ein Brücken-Update beendete eine genehmigte, noch nicht begonnene Freigabe; eine neue Zustimmung war nötig). Die Freigabe aus der Zustandsdatei wird fortgesetzt, wenn ein gültiger, frischer Plan dieselbe `plan_id` mit genau den gespeicherten Bedingungen nennt und das Restbudget belegt ist: Die Ladung hatte nachweislich nicht begonnen, oder der EVCC-Sitzungszähler deckt den Ausfall ab. Die Grenzen (Energie, Kosten, Preis, Fenster) gelten für gespeicherten Stand, Ausfallzeit und neue Ladung zusammen; für die Zeit seit dem letzten Speichern wird zusätzlich der ungünstigste Fall zum Höchstpreis gebucht: volle Leistung für ein Speicherintervall (0,054 kWh) und, wenn die Ladung beim letzten Speichern lief, für das ganze Alter des gespeicherten Stands. Auch Energie, die vor der Entscheidung aus dem EVCC-Zähler gezählt wird, kostet den Höchstpreis.

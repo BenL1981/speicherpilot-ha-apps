@@ -1,3 +1,9 @@
+## 1.6
+
+- Gemeinsame Zahlenumwandlung: Referenz, Ex-post, Nachtbewertung, Zielerreichung und Quittierung nutzen `as_float` aus `speicherpilot_zahlen.py` statt eigener Kopien. Verhalten unverändert (geprüft gegen jede frühere Kopie). Das gilt auch für den mitgelieferten Solver-Kern (`speicherpilot2b_core.py`), den Ex-post zum Nachrechnen aufruft.
+- Keine App-Version geändert: Referenz 1.3.2 (`SIM_VERSION` 1.2), Ex-post 1.2.3 (`EXPOST_VERSION` 1.0.0), Nachtbewertung 1.3.4, Zielerreichung 1.1.3, Quittierung 1.1. Es wird daher nichts neu berechnet oder neu bewertet.
+- Keine Sensoren, Attribute, Einheiten oder Statuswerte geändert, keine neue Einstellung. Gehört zu Solver 1.6 und EV-Brücke 1.4. Einzelheiten in RELEASE_AUSWERTUNG_1.6.md.
+
 ## 1.5
 
 - Referenz 1.3.2: Der Verlauf eines Rechenabschnitts kommt mit einer einzigen Abfrage an Home Assistant statt mit einer je Sensor (16). Im laufenden Betrieb sind das 288 statt 4 608 Verlaufsabfragen am Tag. Gefragt wird genau so wie bisher; die Werte sind dieselben. Scheitert die gebündelte Abfrage, fragt die Referenz wie bisher je Sensor. Neues Attribut `verlauf_abfrage` am Statussensor: `ha_rest_gebuendelt` oder `appdaemon_einzeln (Grund)`.
