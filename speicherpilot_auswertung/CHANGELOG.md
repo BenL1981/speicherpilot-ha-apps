@@ -1,3 +1,9 @@
+## 1.7
+
+- Nachtbewertung 1.3.5: Die Stunden-Momentaufnahme ordnet auch dann ein, wenn der Solver die Entscheidungszeile des Stundenwechsel-Laufs wegen seiner 60-Sekunden-Grenze nicht geschrieben hat (5-Minuten-Lauf kurz vor hh:00). Der Lauf erbt dann die Diagnose des Laufs davor (gleiche Solver-Version, höchstens 90 s); sie muss der Ursache der Momentaufnahme entsprechen. Bisher wurde der Netzbezug solcher Stunden zu Unrecht als „nicht zuordenbar“ gebucht (Nacht 22./23.11.2026: 3,93 kWh, Meldung „prüfbedarf“).
+- Die letzte Nacht wird nach der Installation einmal neu bewertet (neue `APP_VERSION`). Referenz 1.3.2, Ex-post 1.2.3, Zielerreichung 1.1.3, Quittierung 1.1 unverändert.
+- Keine Sensoren, Attribute, Einheiten oder Statuswerte geändert. Einzelheiten in RELEASE_AUSWERTUNG_1.7.md.
+
 ## 1.6
 
 - Gemeinsame Zahlenumwandlung: Referenz, Ex-post, Nachtbewertung, Zielerreichung und Quittierung nutzen `as_float` aus `speicherpilot_zahlen.py` statt eigener Kopien. Verhalten unverändert (geprüft gegen jede frühere Kopie). Das gilt auch für den mitgelieferten Solver-Kern (`speicherpilot2b_core.py`), den Ex-post zum Nachrechnen aufruft.
