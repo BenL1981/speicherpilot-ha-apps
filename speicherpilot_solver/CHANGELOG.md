@@ -1,3 +1,8 @@
+## 1.7
+
+- SENEC-Untergrenze folgt dem aktuellen „AKKU LEER“-Stand: Meldet der SENEC „AKKU LEER“ (oder „NOTLADUNG“) bei höchstens 20 % SoC, gilt der SoC von jetzt als Untergrenze, nach oben wie nach unten. Bisher blieb der niedrigste je gesehene Wert stehen. Folge am 23./24.11.2026: Die Untergrenze hing bei 1,0 %, der SENEC hielt aber 9 % (Schutzladung); der Plan ließ ihn auf 1 % entladen, jede genehmigte Stunde der ID.4-Reserve galt als „SENEC nicht leer“ und es wurde nicht geladen.
+- Python-App 3.9.3. Keine Sensoren, Attribute, Einheiten oder Einstellungen geändert. Einzelheiten in RELEASE_SOLVER_1.7.md.
+
 ## 1.6
 
 - Gemeinsame Zahlenumwandlung: `as_float` steht einmal in `speicherpilot_zahlen.py` statt in acht Kopien. Für Solver-Kern und Planung unverändert (Zahl, Text, `None`, NaN und ±Unendlich wie bisher).
